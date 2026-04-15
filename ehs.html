@@ -730,7 +730,7 @@
     .tab-btn { font-size: 0.76rem; padding: 7px 10px; white-space: nowrap; flex-shrink: 0; }
 
     /* Tab content */
-    .tab-content { padding: 14px 12px; }
+    .tab-content { padding: 14px 12px; overflow-x: hidden; }
 
     /* Section header */
     .section-header { flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
@@ -756,8 +756,8 @@
 
     /* Inspection form */
     .inspection-wrap { padding: 0; }
-    .inspection-form { padding: 16px 14px; border-radius: 12px; max-width: 100%; }
-    .inspection-title { font-size: 1.1rem; margin-bottom: 18px; padding-bottom: 12px; }
+    .inspection-form { padding: 16px 12px; border-radius: 12px; max-width: 100%; overflow-x: hidden; }
+    .inspection-title { font-size: 1rem; margin-bottom: 16px; padding-bottom: 10px; word-break: break-word; }
     .inspection-fields { flex-direction: column; gap: 14px; }
     .inspection-field { min-width: 100%; }
     .inspection-field label { font-size: 0.78rem; }
@@ -766,6 +766,11 @@
     .inspection-footer .inspection-field textarea { font-size: 0.9rem; padding: 10px 12px; }
     .inspection-footer { flex-direction: column; gap: 14px; }
     .inspection-field--wide { flex: unset; width: 100%; }
+    .inspection-checklist { font-size: 0.82rem; margin-top: 18px; }
+    .inspection-checklist th, .inspection-checklist td { padding: 8px 6px; }
+    .chk-num { width: 24px; font-size: 0.75rem; }
+    .chk-ans { width: 40px; }
+    .chk-ans input[type="radio"] { width: 20px; height: 20px; }
     .insp-record-grid { grid-template-columns: 1fr; }
 
     /* Search row */
