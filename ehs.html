@@ -556,53 +556,89 @@
     .inspection-field input { background: #2c2c2e; color: #f5f5f7; border-color: #48484a; }
   }
 
-  .inspection-checklist {
-    width: 100%;
-    margin-top: 28px;
-    border-collapse: collapse;
-    font-size: 0.92rem;
+  /* ── Inspection checklist ── */
+  .insp-checklist {
+    margin-top: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e5ea;
   }
-  .inspection-checklist thead tr {
+  .insp-chk-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
     background: #f5f5f7;
-    border-radius: 8px;
-  }
-  .inspection-checklist th {
-    padding: 10px 14px;
-    font-weight: 600;
-    color: #6e6e73;
-    font-size: 0.8rem;
-    text-align: right;
     border-bottom: 1px solid #e5e5ea;
+    direction: rtl;
+    gap: 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #6e6e73;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
-  .inspection-checklist td {
-    padding: 12px 14px;
+  .insp-chk-row {
+    display: flex;
+    align-items: center;
+    padding: 13px 16px;
     border-bottom: 1px solid #f0f0f5;
-    color: #1d1d1f;
-    text-align: right;
-    vertical-align: middle;
+    direction: rtl;
+    gap: 12px;
   }
-  .inspection-checklist tbody tr:hover td { background: #fafafa; }
-  .chk-num {
+  .insp-chk-row:last-child { border-bottom: none; }
+  .insp-chk-row:hover { background: #fafafa; }
+  .insp-chk-num {
+    font-size: 0.78rem;
     color: #6e6e73;
     font-weight: 600;
-    width: 36px;
-    text-align: center !important;
+    min-width: 22px;
+    text-align: center;
+    flex-shrink: 0;
   }
-  .chk-ans {
-    text-align: center !important;
-    width: 60px;
+  .insp-chk-q {
+    flex: 1;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #1d1d1f;
   }
-  .chk-ans input[type="radio"] {
-    width: 18px;
-    height: 18px;
+  .insp-yesno {
+    display: flex;
+    direction: ltr;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #d2d2d7;
+    flex-shrink: 0;
+  }
+  .insp-yesno label {
     cursor: pointer;
-    accent-color: #0071e3;
+    display: block;
   }
+  .insp-yesno input[type="radio"] { display: none; }
+  .insp-yesno label span {
+    display: block;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #1d1d1f;
+    background: #fff;
+    transition: background 0.15s, color 0.15s;
+    min-width: 44px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .insp-yesno label:first-child span { border-right: 1px solid #d2d2d7; }
+  .insp-yesno input[type="radio"]:checked + span { background: #0071e3; color: #fff; }
   @media (prefers-color-scheme: dark) {
-    .inspection-checklist thead tr { background: #2c2c2e; }
-    .inspection-checklist th { color: #98989d; border-color: #3a3a3c; }
-    .inspection-checklist td { color: #f5f5f7; border-color: #2c2c2e; }
-    .inspection-checklist tbody tr:hover td { background: #2c2c2e; }
+    .insp-checklist { border-color: #3a3a3c; }
+    .insp-chk-header { background: #2c2c2e; border-color: #3a3a3c; color: #8e8e93; }
+    .insp-chk-row { border-color: #2c2c2e; }
+    .insp-chk-row:hover { background: #2c2c2e; }
+    .insp-chk-q { color: #f5f5f7; }
+    .insp-chk-num { color: #8e8e93; }
+    .insp-yesno { border-color: #48484a; }
+    .insp-yesno label span { background: #1c1c1e; color: #f5f5f7; }
+    .insp-yesno label:first-child span { border-right-color: #48484a; }
+    .insp-yesno input[type="radio"]:checked + span { background: #0a84ff; }
   }
 
   .inspection-footer {
@@ -720,70 +756,72 @@
   .req-star { color: #ff3b30; font-size: 0.85rem; }
 
   @media (max-width: 768px) {
-    /* Header */
-    header { padding: 0 12px; height: auto; min-height: 48px; flex-wrap: wrap; gap: 6px; padding-top: 8px; padding-bottom: 8px; }
-    header h1 { font-size: 0.95rem; }
-    .btn-export-all { font-size: 0.72rem; padding: 5px 10px; }
+    /* ── Header ── */
+    header { padding: 0 16px; height: auto; min-height: 44px; flex-wrap: wrap; gap: 6px; padding-top: 8px; padding-bottom: 8px; }
+    header h1 { font-size: 0.9rem; }
+    .btn-export-all { font-size: 0.72rem; padding: 5px 10px; border-radius: 20px; }
 
-    /* Tabs */
-    .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; padding: 8px 10px 0; gap: 0; }
-    .tab-btn { font-size: 0.76rem; padding: 7px 10px; white-space: nowrap; flex-shrink: 0; }
+    /* ── Tabs ── */
+    .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; padding: 6px 16px 0; gap: 0; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { font-size: 0.75rem; padding: 8px 12px; flex-shrink: 0; }
 
-    /* Tab content */
-    .tab-content { padding: 14px 12px; overflow-x: hidden; }
+    /* ── Tab content ── */
+    .tab-content { padding: 16px; overflow-x: hidden; }
 
-    /* Section header */
-    .section-header { flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-    .section-title { font-size: 1.15rem; }
-    .legend { font-size: 0.7rem; gap: 10px; }
+    /* ── Section header ── */
+    .section-header { flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .section-title { font-size: 1.25rem; }
+    .legend { font-size: 0.68rem; gap: 8px; }
 
-    /* Stats bar */
-    .stats-bar { gap: 6px; margin-bottom: 14px; }
-    .stat-card { padding: 8px 10px; gap: 8px; min-width: 0; flex: 1; }
-    .stat-num { font-size: 1.3rem; }
-    .stat-label { font-size: 0.68rem; }
+    /* ── Stats ── */
+    .stats-bar { gap: 8px; margin-bottom: 16px; }
+    .stat-card { padding: 10px 10px; gap: 8px; min-width: 0; flex: 1; border-radius: 10px; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { font-size: 0.63rem; white-space: nowrap; }
 
-    /* Tables */
-    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
-    table { min-width: 420px; font-size: 0.75rem; }
-    td, th { padding: 8px 8px; }
-    .building-row td { padding: 7px 10px; font-size: 0.75rem; }
-    .exp-badge { font-size: 0.7rem; padding: 2px 7px; }
-    .edit-btn { font-size: 0.68rem; padding: 2px 5px; }
+    /* ── Tables ── */
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; }
+    table { min-width: 360px; font-size: 0.74rem; }
+    td, th { padding: 9px 8px; }
+    .building-row td { padding: 7px 12px; font-size: 0.7rem; letter-spacing: 0.03em; }
+    .exp-badge { font-size: 0.67rem; padding: 2px 6px; }
+    .edit-btn { font-size: 0.67rem; padding: 2px 4px; }
+    .exp-cell { gap: 3px; flex-wrap: wrap; }
+    .update-info { font-size: 0.68rem; }
 
-    /* Modal */
-    .modal { width: 94vw; padding: 22px 18px 18px; }
+    /* ── Modal → bottom sheet ── */
+    .modal-overlay { align-items: flex-end; padding: 0; }
+    .modal { width: 100%; max-width: 100%; border-radius: 20px 20px 0 0; padding: 20px 20px 36px; animation: slideUp 0.28s cubic-bezier(0.32, 0.72, 0, 1); }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-    /* Inspection form */
+    /* ── Inspection ── */
     .inspection-wrap { padding: 0; }
-    .inspection-form { padding: 16px 12px; border-radius: 12px; max-width: 100%; overflow-x: hidden; }
-    .inspection-title { font-size: 1rem; margin-bottom: 16px; padding-bottom: 10px; word-break: break-word; }
+    .inspection-form { padding: 16px; border-radius: 14px; max-width: 100%; overflow-x: hidden; }
+    .inspection-title { font-size: 0.95rem; word-break: break-word; margin-bottom: 14px; padding-bottom: 12px; }
     .inspection-fields { flex-direction: column; gap: 14px; }
     .inspection-field { min-width: 100%; }
-    .inspection-field label { font-size: 0.78rem; }
-    .inspection-field input,
-    .inspection-footer .inspection-field select,
-    .inspection-footer .inspection-field textarea { font-size: 0.9rem; padding: 10px 12px; }
+    .inspection-field label { font-size: 0.77rem; }
     .inspection-footer { flex-direction: column; gap: 14px; }
+    .inspection-footer .inspection-field select,
+    .inspection-footer .inspection-field textarea,
+    .inspection-field input { font-size: 0.9rem; padding: 11px 12px; }
     .inspection-field--wide { flex: unset; width: 100%; }
-    .inspection-checklist { font-size: 0.82rem; margin-top: 18px; }
-    .inspection-checklist th, .inspection-checklist td { padding: 8px 6px; }
-    .chk-num { width: 24px; font-size: 0.75rem; }
-    .chk-ans { width: 40px; }
-    .chk-ans input[type="radio"] { width: 20px; height: 20px; }
+    .insp-checklist { margin-top: 18px; }
+    .insp-chk-row { padding: 12px 14px; gap: 10px; }
+    .insp-chk-q { font-size: 0.84rem; }
+    .insp-yesno label span { padding: 7px 12px; min-width: 40px; font-size: 0.8rem; }
     .insp-record-grid { grid-template-columns: 1fr; }
 
-    /* Search row */
-    .building-search-row td { background: #f5f5f7; padding: 6px 10px; border-bottom: 1px solid #e8e8ed; }
-    .building-search-row input { width: 100%; padding: 5px 10px; border: 1px solid #d2d2d7; border-radius: 8px; font-size: 0.82rem; font-family: inherit; background: #fff; color: #1d1d1f; outline: none; }
+    /* ── Search row ── */
+    .building-search-row td { padding: 6px 10px; }
+    .building-search-row input { width: 100%; max-width: none; padding: 7px 10px; border: 1px solid #d2d2d7; border-radius: 8px; font-size: 0.82rem; font-family: inherit; background: #fff; color: #1d1d1f; outline: none; }
     .building-search-row input:focus { border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,0.15); }
   }
   @media (prefers-color-scheme: dark) {
     .building-search-row td { background: #2c2c2e; border-bottom-color: rgba(84,84,88,0.3); }
     .building-search-row input { background: #3a3a3c; border-color: rgba(84,84,88,0.5); color: #f5f5f7; }
     .building-search-row input:focus { border-color: #0a84ff; box-shadow: 0 0 0 3px rgba(10,132,255,0.2); }
-  }
-    .insp-record-grid { grid-template-columns: 1fr; }
   }
 
 </style>
@@ -1139,54 +1177,64 @@ async function jsonbinWrite(data) {
         </div>
       </div>
 
-      <table class="inspection-checklist">
-        <thead>
-          <tr>
-            <th class="chk-num">#</th>
-            <th class="chk-question">שאלה <span class="req-star">*</span></th>
-            <th class="chk-ans">כן</th>
-            <th class="chk-ans">לא</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="chk-num">1</td>
-            <td>האם המכשיר ללא שברים או פגיעות?</td>
-            <td class="chk-ans"><input type="radio" name="q1" value="yes"></td>
-            <td class="chk-ans"><input type="radio" name="q1" value="no"></td>
-          </tr>
-          <tr>
-            <td class="chk-num">2</td>
-            <td>האם האלקטרודות תקינות ובתוקף?</td>
-            <td class="chk-ans"><input type="radio" name="q2" value="yes"></td>
-            <td class="chk-ans"><input type="radio" name="q2" value="no"></td>
-          </tr>
-          <tr>
-            <td class="chk-num">3</td>
-            <td>האם הסוללה תקינה?</td>
-            <td class="chk-ans"><input type="radio" name="q3" value="yes"></td>
-            <td class="chk-ans"><input type="radio" name="q3" value="no"></td>
-          </tr>
-          <tr>
-            <td class="chk-num">4</td>
-            <td>האם הארונית מקובעת לקיר בצורה נאותה?</td>
-            <td class="chk-ans"><input type="radio" name="q4" value="yes"></td>
-            <td class="chk-ans"><input type="radio" name="q4" value="no"></td>
-          </tr>
-          <tr>
-            <td class="chk-num">5</td>
-            <td>האם קיים שלט הוראות ההפעלה סמוך למכשיר?</td>
-            <td class="chk-ans"><input type="radio" name="q5" value="yes"></td>
-            <td class="chk-ans"><input type="radio" name="q5" value="no"></td>
-          </tr>
-          <tr>
-            <td class="chk-num">6</td>
-            <td>האם המכשיר נבדק במהלך השנה האחרונה ע״י בעל מקצוע מתאים?</td>
-            <td class="chk-ans"><input type="radio" name="q6" value="yes"></td>
-            <td class="chk-ans"><input type="radio" name="q6" value="no"></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="insp-checklist">
+        <div class="insp-chk-header">
+          <span class="insp-chk-num">#</span>
+          <span style="flex:1">שאלה <span class="req-star">*</span></span>
+          <div class="insp-yesno" style="border:none;background:none;">
+            <label style="pointer-events:none"><span style="background:none;color:#6e6e73;font-size:0.72rem;padding:0 16px;">כן</span></label>
+            <label style="pointer-events:none"><span style="background:none;color:#6e6e73;font-size:0.72rem;padding:0 14px;">לא</span></label>
+          </div>
+        </div>
+        <div class="insp-chk-row">
+          <span class="insp-chk-num">1</span>
+          <span class="insp-chk-q">האם המכשיר ללא שברים או פגיעות?</span>
+          <div class="insp-yesno">
+            <label><input type="radio" name="q1" value="yes"><span>כן</span></label>
+            <label><input type="radio" name="q1" value="no"><span>לא</span></label>
+          </div>
+        </div>
+        <div class="insp-chk-row">
+          <span class="insp-chk-num">2</span>
+          <span class="insp-chk-q">האם האלקטרודות תקינות ובתוקף?</span>
+          <div class="insp-yesno">
+            <label><input type="radio" name="q2" value="yes"><span>כן</span></label>
+            <label><input type="radio" name="q2" value="no"><span>לא</span></label>
+          </div>
+        </div>
+        <div class="insp-chk-row">
+          <span class="insp-chk-num">3</span>
+          <span class="insp-chk-q">האם הסוללה תקינה?</span>
+          <div class="insp-yesno">
+            <label><input type="radio" name="q3" value="yes"><span>כן</span></label>
+            <label><input type="radio" name="q3" value="no"><span>לא</span></label>
+          </div>
+        </div>
+        <div class="insp-chk-row">
+          <span class="insp-chk-num">4</span>
+          <span class="insp-chk-q">האם הארונית מקובעת לקיר בצורה נאותה?</span>
+          <div class="insp-yesno">
+            <label><input type="radio" name="q4" value="yes"><span>כן</span></label>
+            <label><input type="radio" name="q4" value="no"><span>לא</span></label>
+          </div>
+        </div>
+        <div class="insp-chk-row">
+          <span class="insp-chk-num">5</span>
+          <span class="insp-chk-q">האם קיים שלט הוראות ההפעלה סמוך למכשיר?</span>
+          <div class="insp-yesno">
+            <label><input type="radio" name="q5" value="yes"><span>כן</span></label>
+            <label><input type="radio" name="q5" value="no"><span>לא</span></label>
+          </div>
+        </div>
+        <div class="insp-chk-row">
+          <span class="insp-chk-num">6</span>
+          <span class="insp-chk-q">האם המכשיר נבדק במהלך השנה האחרונה ע״י בעל מקצוע מתאים?</span>
+          <div class="insp-yesno">
+            <label><input type="radio" name="q6" value="yes"><span>כן</span></label>
+            <label><input type="radio" name="q6" value="no"><span>לא</span></label>
+          </div>
+        </div>
+      </div>
 
       <div class="inspection-footer">
         <div class="inspection-field">
